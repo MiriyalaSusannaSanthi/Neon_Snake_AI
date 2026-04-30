@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=JetBrains+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'JetBrains Mono', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'VT323', ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer utilities {
+  .bg-scanlines {
+    background: linear-gradient(
+      to bottom,
+      transparent 50%,
+      rgba(0, 0, 0, 0.4) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+  }
+
+  .text-glitch {
+    position: relative;
+    text-shadow: 0.05em 0 0 #ff00ff, -0.025em -0.05em 0 #00ffff,
+                 0.025em 0.05em 0 #ff00ff;
+    animation: glitch 1s infinite;
+  }
+
+  @keyframes glitch {
+    0% { text-shadow: 0.05em 0 0 #ff00ff, -0.05em -0.025em 0 #00ffff, -0.025em 0.05em 0 #ff00ff; }
+    14% { text-shadow: 0.05em 0 0 #ff00ff, -0.05em -0.025em 0 #00ffff, -0.025em 0.05em 0 #ff00ff; }
+    15% { text-shadow: -0.05em -0.025em 0 #ff00ff, 0.025em 0.025em 0 #00ffff, -0.05em -0.05em 0 #ff00ff; }
+    49% { text-shadow: -0.05em -0.025em 0 #ff00ff, 0.025em 0.025em 0 #00ffff, -0.05em -0.05em 0 #ff00ff; }
+    50% { text-shadow: 0.025em 0.05em 0 #ff00ff, 0.05em 0 0 #00ffff, 0 -0.05em 0 #ff00ff; }
+    99% { text-shadow: 0.025em 0.05em 0 #ff00ff, 0.05em 0 0 #00ffff, 0 -0.05em 0 #ff00ff; }
+    100% { text-shadow: -0.025em 0 0 #ff00ff, -0.025em -0.025em 0 #00ffff, -0.025em -0.05em 0 #ff00ff; }
+  }
+
+  @keyframes noise {
+    0% { transform: translateX(0); }
+    10% { transform: translateX(-1px); }
+    20% { transform: translateX(1px); }
+    30% { transform: translateX(-2px); }
+    40% { transform: translateX(2px); }
+    50% { transform: translateX(-1px); }
+    60% { transform: translateX(1px); }
+    70% { transform: translateX(-2px); }
+    80% { transform: translateX(2px); }
+    90% { transform: translateX(-1px); }
+    100% { transform: translateX(0); }
+  }
+
+  .animate-noise {
+    animation: noise 0.1s infinite;
+  }
+
+  .crt-border {
+    border: 2px solid white;
+    box-shadow: 4px 4px 0 #ff00ff, -4px -4px 0 #00ffff;
+  }
+}
+
+body {
+  margin: 0;
+  background-color: #000;
+  color: #fff;
+  overflow: hidden;
+}
